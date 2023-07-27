@@ -19,23 +19,23 @@
     <div class="col-md-6 my-5 " style="background-color: var(--c-background); border:1px solid var(--c-secondry2); border-radius: 20px; padding: 25px;">   
       <h1 class="title text-center pb-3">Registration Form</h1>
       
-<form >
+<form method="post" action="register.php">
   <div class=" registration-container">
   <div class="row">
   <div class="col-md-6 ">
     <label for="validationServer01" class="form-label">First name</label>
-    <input type="text" class="form-control input-custom" id="validationServer01" value="" required>
+    <input type="text" class="form-control input-custom" name="fname" id="validationServer01" required>
     <br>
   </div>
   <div class="col-md-6" >
     <label for="validationServer02" class="form-label">Last name</label>
-    <input type="text" class="form-control input-custom" id="validationServer02" value="" required>
+    <input type="text" class="form-control input-custom" name="lname" id="validationServer02"  required>
     <br>
   </div>
   <div class="col-md-12">
     <label for="validationServerUsername" class="form-label">Username</label>
     <div class="input-group has-validation">
-      <input type="text" class="form-control input-custom" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+      <input type="text" class="form-control input-custom" name="uname" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
       <div id="validationServerUsernameFeedback" class="invalid-feedback">
         <br>
       </div>
@@ -44,7 +44,7 @@
       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
       <div class="form-outline flex-fill mb-0">
       <label class="form-label" for="form3Example4c">Password</label>
-      <input type="password" id="form3Example4c" class="form-control" />
+      <input type="password" id="form3Example4c" name="pass" class="form-control" />
       </div>
     </div>
 
@@ -57,25 +57,25 @@
     </div>
   <div class="form-outline mb-4" >
     <label class="form-label" for="form9Example6">Address</label>
-    <input type="text" id="form9Example6" class="form-control input-custom" required>
+    <input type="text" id="form9Example6" name="address" class="form-control input-custom" required>
     <div class="valid-feedback">
     </div>
   </div>
    
   <div class="form-outline mb-4">
     <label for="validationServer05" class="form-label">Zip</label>
-    <input type="text" class="form-control input-custom" id="validationServer05" aria-describedby="validationServer05Feedback" required>
+    <input type="text" class="form-control input-custom" name="zip" id="validationServer05" aria-describedby="validationServer05Feedback" required>
     <div id="validationServer05Feedback" class="invalid-feedback">
       Please provide a valid zip.
     </div>
   </div>
   <div class="form-outline mb-4">
     <label class="form-label" for="form7Example6">Telehone Number</label>
-    <input type="number" id="form7Example6" class="form-control" required>
+    <input type="number" id="form7Example6" class="form-control" name="tele" required>
   </div>
   <div class="form-outline mb-4">
     <label class="form-label" for="form7Example5">Email Address</label>
-    <input type="email" id="form7Example5" class="form-control" required>
+    <input type="email" id="form7Example5" class="form-control" name="email" required>
   </div>
   <div>
     <div >
