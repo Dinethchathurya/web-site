@@ -18,7 +18,7 @@ $email=$_REQUEST["email"];
 if (!$conn) {
     die("Connection faild: " . mysqli_connect_error());
 }
-$sql="INSERT INTO Client(Fname,Lname,username,password,address,number) VALUES('$fname','$lname','$uname','$pass','$addres','$tele')";
+$sql="INSERT INTO Client(Fname,Lname,username,password,email,address,number,zip) VALUES('$fname','$lname','$uname','$pass','$email','$addres','$tele','$zip')";
 
 if (mysqli_query($conn,$sql)) {
     echo"recoded";
