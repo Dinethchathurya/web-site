@@ -1,14 +1,16 @@
 <?php
 if (isset($_GET['variableName'])) {
 
-$server="localhost";
-$username="root";
-$password="root1234";
-$db="NS";
 
-$conn=mysqli_connect($server,$username,$password,$db);
+$server = "localhost";
+$usename = "root";
+$password = "root1234";
+$dbname = "NS";
 
-?>
+$conn = mysqli_connect($server, $usename, $password, $dbname);
+
+
+  ?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -20,7 +22,7 @@ $conn=mysqli_connect($server,$username,$password,$db);
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="icon" href="img/logo/Logo web.png">
     <link rel="stylesheet" href="admin.css">
-    <title>Admin</title>
+    <title>Admin Page</title>
     <style>
       .tcolor {
         background-color: #fdefef;
@@ -92,24 +94,26 @@ $conn=mysqli_connect($server,$username,$password,$db);
                   <th scope="col" style="background-color:#fdefef;">Qunntuty Oders</th>
                 </tr>
               </thead>
-              <tbody style="background-color:#fdefef;">
-                <tr>
-                  <th scope="row">-</th>
+  <tbody style="background-color:#fdefef;">
+              <?php
+              $sql = "SELECT * FROM Product name";
+
+            if (!$conn) {
+              die("connection faild".mysqli_connect_error());
+            }
+            $result1=mysqli_query($conn,$sql);
+            $numrow=mysqli_num_rows($result1);
+          if ($numrow>0) {
+              while ($row = mysqli_fetch_assoc($result1)) {
+                $stringrow=(string)$row['name'];
+               echo'<tr>
+                  <th scope="row">'.$stringrow.'</th>
                   <td>--</td>
+                </tr>';
+              }
+            }
+              ?>
 
-
-                </tr>
-                <tr>
-                  <th scope="row">--</th>
-                  <td>--</td>
-
-
-                </tr>
-                <tr>
-                  <th scope="row">-</th>
-                  <td colspan="2">--</td>
-
-                </tr>
               </tbody>
             </table>
           </div>
@@ -227,95 +231,83 @@ $conn=mysqli_connect($server,$username,$password,$db);
           <br>
           <div class="header--wrapper" id="newp">
             <div class="header--title">
+              <!--ADD New product section -->
+
               <h2>Add New Product</h2>
             </div>
-            <form class="row g-3">
+            <form class="row g-3" method="post" action="addproduct.php">
               <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">Name</label>
-                <input type="text" class="form-control" id="inputEmail4">
+                <input type="text" name="name" class="form-control" id="inputEmail4">
               </div>
 
               <div class="col-12">
                 <label for="inputAddress" class="form-label">About</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="">
+                <input type="text" name="about" class="form-control" id="inputAddress" placeholder="">
               </div>
 
               <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">Price</label>
-                <input type="text" class="form-control" id="inputEmail4" placeholder="Rs:">
+                <input type="text" class="form-control" name="price" id="inputEmail4" placeholder="Rs:">
               </div>
-
-
 
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Product image</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="url/.jpg">
+                <input type="text" class="form-control" name="url" id="inputAddress" placeholder="url/.jpg">
               </div>
 
-
-
-
               <div class="col-12">
-                <button type="submit" class="btn btn-primary"> Add</button>
+                <button type="submit" class="btn" style="background-color: #D1A29F;"> Add Product </button>
               </div>
 
             </form>
           </div>
 
           <br>
-
+          <!--Delete product-->
           <div class="header--wrapper" id="del">
             <div class="header--title">
               <h2>Delete Product</h2>
             </div>
-            <form class="row g-3">
-              <div class="col-md-6">
+
+            <form class="row g-3 col-12" method="post" action="deleteproduct.php">
+              <div class="col-4">
                 <label for="inputEmail4" class="form-label">Name</label>
-                <input type="text" class="form-control" id="inputEmail4">
+                <input type="text" name="name" class="form-control" placeholder="Product Name" id="inputEmail4">
               </div>
 
-              <div class="col-12">
-                <label for="inputAddress" class="form-label">About</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="">
-              </div>
 
-              <div class="col-md-6">
+              <div class="col-4">
                 <label for="inputEmail4" class="form-label">Price</label>
-                <input type="text" class="form-control" id="inputEmail4" placeholder="Rs:">
+                <input type="text" class="form-control" name="price" id="inputEmail4" placeholder="Rs:">
               </div>
 
-
-
               <div class="col-12">
-                <label for="inputAddress" class="form-label">Product image</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="url/.jpg">
-              </div>
-
-
-
-
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <button type="submit" style="background-color: #D1A29F;" class="btn">Delete</button>
               </div>
 
             </form>
 
 
           </div>
-
+          <br>
+          <img src="admin.png" style="width:100%;" alt="">
         </div>
 
 
       </div>
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
   </body>
 
   </html>
-<?php
-}else {
- header("Location: login.html");
+
+  <?php
+
+  mysqli_close($conn);
+} else {
+  header("Location: login.html");
 }
 ?>
-

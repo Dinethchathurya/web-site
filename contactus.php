@@ -14,7 +14,7 @@ $comment = $_REQUEST["comment"];
 $number=$_REQUEST["number"];
 
 if (!$conn) {
-    die(mysqli_connect_error());
+    die("connection faild".mysqli_connect_error());
 }
 
 $sql="INSERT INTO request(Fname,Lname,email,pnumber,comment) VALUES('$fname','$lname','$email','$number','$comment')";
