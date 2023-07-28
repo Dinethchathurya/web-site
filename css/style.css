@@ -98,7 +98,7 @@ img{
 
 /*Hero css setup*/
 
-#hero{
+.hero{
     background: url(../img/content/hero.png);
     background-repeat: no-repeat;
     background-size: cover;
