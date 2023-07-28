@@ -1,36 +1,45 @@
 <?php
-$server = "localhost";
-$username = "root";
-$passwod = "root1234";
-$db = "NS";
+if (isset($_POST['submit'])) {
 
-$conn = mysqli_connect($server, $username, $passwod, $db);
+$paraforadminphp=$_POST['submit'];
 
-$email = $_REQUEST["email"];
-$pass = $_REQUEST["pass"];
+  $server = "localhost";
+  $username = "root";
+  $passwod = "root1234";
+  $db = "NS";
 
-if (!$conn) {
-  die(mysqli_connect_error());
-}
+  $conn = mysqli_connect($server, $username, $passwod, $db);
 
-$sql = "SELECT * FROM Client WHERE email= '$email';";
+  $email = $_REQUEST["email"];
+  $pass = $_REQUEST["pass"];
 
-$result = mysqli_query($conn, $sql);
-$check = mysqli_num_rows($result);
-
-if ($check > 0) {
-  while ($row = mysqli_fetch_assoc($result)) {
-    if ($row['password'] == 'notuser123' && $email=='notuser@gmail.com') {
-     header("Location: admin.html");
-    }
-    else if ($row['password'] == $pass) {
-      header("Location: checkout.html");
-
-    } else
-      header("Location: login1.html");
+  if (!$conn) {
+    die(mysqli_connect_error());
   }
-} else
-  header("Location: login1.html");
 
-mysqli_close($conn);
+  $sql = "SELECT * FROM Client WHERE email= '$email';";
+
+  $result = mysqli_query($conn, $sql);
+  $check = mysqli_num_rows($result);
+
+  if ($check > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      if ($row['password'] == 'notuser123' && $email == 'notuser@gmail.com') {
+
+        header("Location: admin.php?variableName=" . $paraforadminphp);
+      
+
+      } else if ($row['password'] == $pass) {
+        header("Location: checkout.html");
+
+      } else
+        header("Location: login1.html");
+    }
+  } else
+    header("Location: login1.html");
+
+  mysqli_close($conn);
+} else
+  header("Location: login.html");
+
 ?>
