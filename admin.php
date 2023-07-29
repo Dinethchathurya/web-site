@@ -134,10 +134,40 @@ $conn = mysqli_connect($server, $usename, $password, $dbname);
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">-</th>
-                  <td colspan="1">--</td>
+
+               <?php
+               $sql2 = "SELECT * FROM order Client_idClient ;";
+               
+               $result2 = mysqli_query($conn, $sql2);
+               $numrow2 = mysqli_num_rows($result2);
+               if ($numrow > 0) {
+                 while ($row = mysqli_fetch_assoc($result2)) {
+                   $stringrow = (string) $row['Client_idClient'];
+                   echo ' <tr>
+                  <th scope="row">fish bun</th>
+                  <td colspan="1">fishh</td>
+                  <td>fish bun ></td>
+                  <td>'. $stringrow.'.z</td>
                   <td>--</td>
+                  <td>--</td>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Shiped
+                      </label>
+                    </div>
+                  </td>
+
+                </tr>';
+                 }
+               }
+               
+               ?>
+                <tr>
+                  <th scope="row">fish bun</th>
+                  <td colspan="1">fishh</td>
+                  <td>fish bun ></td>
                   <td>--</td>
                   <td>--</td>
                   <td>--</td>
