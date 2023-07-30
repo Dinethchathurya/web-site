@@ -2,12 +2,12 @@
 if (isset($_GET['variableName'])) {
 
 
-$server = "localhost";
-$usename = "root";
-$password = "root1234";
-$dbname = "NS";
+  $server = "localhost";
+  $usename = "root";
+  $password = "root1234";
+  $dbname = "NS";
 
-$conn = mysqli_connect($server, $usename, $password, $dbname);
+  $conn = mysqli_connect($server, $usename, $password, $dbname);
 
 
   ?>
@@ -90,80 +90,50 @@ $conn = mysqli_connect($server, $usename, $password, $dbname);
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col" style="background-color:#fdefef;">Product Name</th>
-                  <th scope="col" style="background-color:#fdefef;">Qunntuty Oders</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Qunntuty Oders</th>
                 </tr>
               </thead>
-  <tbody style="background-color:#fdefef;">
-              <?php
-              $sql = "SELECT * FROM Product name";
+              <tbody style="background-color:#fdefef;">
+                <?php
+                $sql = "SELECT * FROM Product name";
 
-            if (!$conn) {
-              die("connection faild".mysqli_connect_error());
-            }
-            $result1=mysqli_query($conn,$sql);
-            $numrow=mysqli_num_rows($result1);
-          if ($numrow>0) {
-              while ($row = mysqli_fetch_assoc($result1)) {
-                $stringrow=(string)$row['name'];
-               echo'<tr>
-                  <th scope="row">'.$stringrow.'</th>
+                if (!$conn) {
+                  die("connection faild" . mysqli_connect_error());
+                }
+                $result1 = mysqli_query($conn, $sql);
+                $numrow = mysqli_num_rows($result1);
+                if ($numrow > 0) {
+                  while ($row = mysqli_fetch_assoc($result1)) {
+                    $stringrow = (string) $row['name'];
+                    echo '<tr>
+                  <th scope="row">' . $stringrow . '</th>
                   <td>--</td>
                 </tr>';
-              }
-            }
-              ?>
+                  }
+                }
+                ?>
 
               </tbody>
             </table>
           </div>
-          <div class="header--wrapper" style="background-color:#fdefef;" id="oders">
+          <div class="header--wrapper" id="oders">
             <div class="header--title">
               <h2>Oders</h2>
             </div>
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col" style="background-color:#fdefef;">Product Name</th>
-                  <th scope="col" style="background-color:#fdefef;">Costomer Name</th>
-                  <th scope="col" style="background-color:#fdefef;">E-mail</th>
-                  <th scope="col" style="background-color:#fdefef;">Address</th>
-                  <th scope="col" style="background-color:#fdefef;">Contact Number</th>
-                  <th scope="col" style="background-color:#fdefef;">Qunntuty Oders</th>
-                  <th scope="col" style="background-color:#fdefef;">Ship</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Costomer Name</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Contact Number</th>
+                  <th scope="col">Qunntuty Oders</th>
+                  <th scope="col">Ship</th>
                 </tr>
               </thead>
               <tbody>
-
-               <?php
-               $sql2 = "SELECT * FROM order Client_idClient ;";
-               
-               $result2 = mysqli_query($conn, $sql2);
-               $numrow2 = mysqli_num_rows($result2);
-               if ($numrow > 0) {
-                 while ($row = mysqli_fetch_assoc($result2)) {
-                   $stringrow = (string) $row['Client_idClient'];
-                   echo ' <tr>
-                  <th scope="row">fish bun</th>
-                  <td colspan="1">fishh</td>
-                  <td>fish bun ></td>
-                  <td>'. $stringrow.'.z</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Shiped
-                      </label>
-                    </div>
-                  </td>
-
-                </tr>';
-                 }
-               }
-               
-               ?>
                 <tr>
                   <th scope="row">fish bun</th>
                   <td colspan="1">fishh</td>
@@ -227,34 +197,34 @@ $conn = mysqli_connect($server, $usename, $password, $dbname);
               <thead>
                 <tr>
                   <th scope="col">Costomer Name</th>
-                  <th scope="col">Request ID</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Reply</th>
+                  <th scope="col">Request</th>
+                  
+                  <th scope="col"></th>
+                 
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">--</th>
-                  <td>--</td>
-                  <td>-- / -- / ----</td>
-                  <td>--</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row">--</th>
-                  <td>--</td>
-                  <td> -- / -- /----</td>
-                  <td>--</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row">--</th>
-                  <td>--</td>
-                  <td>-- / -- / ----</td>
-                  <td>--</td>
-                  <td></td>
-                </tr>
+                
+                  <?php
+                  $query3="SELECT * FROM request;";
+               
+                  $result3 = mysqli_query($conn, $query3);
+                  $numrow3 = mysqli_num_rows($result3);
+                  if ($numrow3>0) {
+                   while ($row3=mysqli_fetch_assoc($result3)) {
+                     $name3 = (string) $row3['fname'];
+                     $request3=(string) $row3['comment'];
+                     $number3=(string)$row3['pnumber'];
+                    echo" <tr>
+                  <td scope= >".$name3."</td>
+                  <td>".$request3."</td>
+                  <td>".$number3."</td>
+                 
+                </tr>";
+                   }
+                  }
+                  ?>
+
               </tbody>
             </table>
           </div>
@@ -323,10 +293,7 @@ $conn = mysqli_connect($server, $usename, $password, $dbname);
           <br>
           <img src="admin.png" style="width:100%;" alt="">
         </div>
-
-
       </div>
-
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

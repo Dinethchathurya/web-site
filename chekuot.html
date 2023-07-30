@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="check.css">
+    <link id="dynamic-favicon" rel="shortcut icon"
+        href="https://d3cuh014go2nda.cloudfront.net/assets/images/favicon.png">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="title">CHECKOUT</div>
+    <div class="container">
+        <div class="text-box-1">
+            <span>Cake</span>
+            <div class="quantity">
+                <span class="item-name">Chocolate Cake</span>
+                <span class="item-price">Rs.<span class="pricee">100</span>.00</span>
+                <div class="wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">1</span>
+                    <span class="plus">+</span>
+                </div>
+            </div>
+            <div class="info">
+                <span>Your Information</span>
+                <input type="text" name="" class="name-box-1" placeholder="First Name">
+                <input type="text" name="" class="name-box-2" placeholder="Last Name">
+                <input type="email" name="" class="email-box" placeholder="Email">
+            </div>
+            <div class="address">
+                <span>Billing Address</span>
+                <input type="text" name="" class="address-box" placeholder="Address">
+            </div>
+            <div class="payment">
+                <span>Payment Information</span>
+                <div class="pay-box">
+                    <ion-icon name="card"></ion-icon>Card
+                </div>
+                <input type="button" name="" class="checkout-btn" value="Complete Order">
+            </div>
+        </div>
+        <div class="text-box-2">
+            <div class="summary">
+                <span>Order Details</span>
+                <span class="item">Chocolate Cake x1</span>
+                <span class="price">Rs.<span class="pricetext">100</span>.00</span>
+                <span class="line">s</span>
+                <span class="total">Total</span>
+                <span class="total-price">Rs.<span class="totalPriceText">100</span>.00</span>
+            </div>
+            <div class="img">
+                <div class="img-box">
+                    <img src="img1.jpeg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script>
+        const plus = document.querySelector(".plus"),
+            minus = document.querySelector(".minus"),
+            num = document.querySelector(".num"),
+            pricee = document.querySelector(".pricee"),
+            pricetext = document.querySelector(".pricetext"),
+            totalPriceText = document.querySelector(".totalPriceText");
+
+        let a = 1;
+        let price = 100;
+
+        plus.addEventListener("click", () => {
+            a += 1;
+            num.innerText = a;
+            price += 100;
+            pricee.innerText = price;
+            pricetext.innerText = price;
+            totalPriceText.innerText = price;
+        });
+
+        minus.addEventListener("click", () => {
+            if (a > 1) {
+                a = a - 1;
+                num.innerText = a;
+                price -= 100;
+                pricee.innerText = price;
+            }
+        });
+
+    </script>
+</body>
+
+</html>
