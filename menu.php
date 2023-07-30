@@ -1,3 +1,18 @@
+<?php
+
+$server = "localhost";
+$usename = "root";
+$password = "root1234";
+$dbname = "NS";
+
+$conn = mysqli_connect($server, $usename, $password, $dbname);
+
+if (!$conn) {
+  die("connection faild" . mysqli_connect_error());
+}
+
+$query="SELECT * FROM ";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +51,7 @@
                   <a class="nav-link" href="contactus.html">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">My Account</a>
+                  <a class="nav-link" href="login.html">My Account</a>
                 </li>
                 <li class="nav-item">
                   <a class="btn btn-primary mx-2 px-5 py-2 border-0" href="menu.html">Order Now</a>
@@ -55,15 +70,8 @@
 <div class="backcolor section-padding pt-5">
 
       <h1 class="title"> Our Menu</h1>
-
-
-  
-
-
-
-
-
                 <div class="items ">
+                  
                   <div class="card text-center" style="width: 18rem;">
                     <img src="img/menu/bread.png" height="200px" class="card-img-top" alt="...">
                     <div class="card-body">
