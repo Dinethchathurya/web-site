@@ -6,7 +6,6 @@
     --c-secondry:#1A1F51;
     --c-secondry2:#D1A29F; 
     --c-background:#fdefef;
-   
 }
 
 
@@ -53,6 +52,8 @@ img{
 
 .btn-primary{
     background-color: #CE3939 !important;  
+    border: none !important;
+    
 }
 
 .btn:hover{
@@ -99,7 +100,7 @@ img{
 
 /*Hero css setup*/
 
-.hero{
+#hero{
     background: url(../img/content/hero.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -127,12 +128,26 @@ img{
 }
 
 .card-img-top{
-    padding: 10% 20% 0% 20%;
+    border-radius: 15px 15px 0px 0px;
+    
 }
 
 .card-title{
     font-weight: 600;
 }
+
+
+
+.items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+.card {
+      margin: 20px;
+    }
+
 
 
 /*testomonial css setup*/
@@ -164,6 +179,12 @@ img{
 
 .card-padding{
     padding: 0px 10% 10px 10% ;
+}
+
+
+.card-text{
+    color: #CE3939 !important;
+    font-weight: 500;
 }
 
 

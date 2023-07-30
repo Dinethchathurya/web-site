@@ -30,7 +30,8 @@ $paraforadminphp=$_POST['submit'];
       
 
       } else if ($row['password'] == $pass) {
-        header("Location: checkout.html");
+        echo"Your Order sucess";
+        header("Location: menu.html");
 
       } else
         header("Location: login1.html");
