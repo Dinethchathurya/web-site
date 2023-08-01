@@ -8,7 +8,9 @@ if (isset($_GET['variableName'])) {
   $dbname = "NS";
 
   $conn = mysqli_connect($server, $usename, $password, $dbname);
-
+if (!$conn) {
+                  die("connection faild" . mysqli_connect_error());
+                }
 
   ?>
   <!DOCTYPE html>
@@ -78,45 +80,7 @@ if (isset($_GET['variableName'])) {
                 <h2 style="color: rgb(239, 133, 57); ">Admin Dashboard</h2>
               </div>
 
-            </div>
-            <div class="card--container">
-              <h3 class="main--title">Most Sold Items</h3>
-              <div class="d-grid gap-2 d-md-block">
-                <button class="btn btn-primary" type="button">Today</button>
-                <button class="btn btn-primary" type="button">Week</button>
-                <button class="btn btn-primary" type="button">Month</button>
-              </div>
-            </div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Qunntuty Oders</th>
-                </tr>
-              </thead>
-              <tbody style="background-color:#fdefef;">
-                <?php
-                $sql = "SELECT * FROM Product name";
-
-                if (!$conn) {
-                  die("connection faild" . mysqli_connect_error());
-                }
-                $result1 = mysqli_query($conn, $sql);
-                $numrow = mysqli_num_rows($result1);
-                if ($numrow > 0) {
-                  while ($row = mysqli_fetch_assoc($result1)) {
-                    $stringrow = (string) $row['name'];
-                    echo '<tr>
-                  <th scope="row">' . $stringrow . '</th>
-                  <td>--</td>
-                </tr>';
-                  }
-                }
-                ?>
-
-              </tbody>
-            </table>
-          </div>
+            </div >
           <div class="header--wrapper" id="oders">
             <div class="header--title">
               <h2>Oders</h2>
@@ -126,64 +90,39 @@ if (isset($_GET['variableName'])) {
                 <tr>
                   <th scope="col">Product Name</th>
                   <th scope="col">Costomer Name</th>
-                  <th scope="col">E-mail</th>
                   <th scope="col">Address</th>
                   <th scope="col">Contact Number</th>
-                  <th scope="col">Qunntuty Oders</th>
-                  <th scope="col">Ship</th>
+                  <th scope="col">quantity</th>
+                  <th scope="col">price</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">fish bun</th>
-                  <td colspan="1">fishh</td>
-                  <td>fish bun ></td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Shiped
-                      </label>
-                    </div>
-                  </td>
+                 <?php
+                  $ordersql = "SELECT * FROM `order`;";
+                  $orderresult = mysqli_query($conn, $ordersql);
+                $numorder = mysqli_num_rows($orderresult);
+                if ($numorder > 0) {
+                  while ($orderrow = mysqli_fetch_assoc($orderresult)) {
+                    $ordername = (string) $orderrow['product_name'];
+                    $customer_name = (string) $orderrow['customer_name'];
+                    $address = (string) $orderrow['address'];
+                    $contact_number = (string) $orderrow['contact_number'];
+                    $quantity = (string) $orderrow['quantity'];
+                    $price = (string) $orderrow['price'];
 
-                </tr>
-                <tr>
-                  <th scope="row">-</th>
-                  <td colspan="1">--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Sheped
-                      </label>
-                    </div>
-                  </td>
+                   echo' <th scope="row">'. $ordername.'</th>
+                  <td colspan="1">'. $customer_name.'</td>
+                  <td>'. $address.'</td>
+                  <td>'. $contact_number.'</td>
+                  <td>'. $quantity.'</td>
+                  <td>'. $price.'</td>
+                  </tr>';
+                  }
+                }   
+                 ?>
+               
 
-                </tr>
-                <tr>
-                  <th scope="row">-</th>
-                  <td colspan="1">--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Sheped
-                      </label>
-                    </div>
-                  </td>
-                </tr>
               </tbody>
 
             </table>
@@ -199,7 +138,7 @@ if (isset($_GET['variableName'])) {
                   <th scope="col">Costomer Name</th>
                   <th scope="col">Request</th>
                   
-                  <th scope="col"></th>
+                  <th scope="col">Contact Number</th>
                  
                 </tr>
               </thead>
@@ -229,8 +168,47 @@ if (isset($_GET['variableName'])) {
             </table>
           </div>
           <br>
+          <div class="header--wrapper" id="Available Items">
+            <div class="card--container">
+              <h3 class="main--title">Available Items</h3>
+             
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">price</th>
+                </tr>
+              </thead>
+              <tbody style="background-color:#fdefef;">
+                <?php
+                $sql = "SELECT * FROM Product";
+
+                
+                $result1 = mysqli_query($conn, $sql);
+                $numrow = mysqli_num_rows($result1);
+                if ($numrow > 0) {
+                  while ($row = mysqli_fetch_assoc($result1)) {
+                    $stname = (string) $row['name'];
+                    $stprice = (string) $row['price'];
+
+                    echo '<tr>
+                  <td scope="row">' . $stname. '</td>
+                  <td>'. $stprice.'</td>
+                </tr>';
+                  }
+                }
+                ?>
+
+              </tbody>
+            </table>
+          </div>
+            </div>
+          <br>
           <div class="header--wrapper" id="newp">
             <div class="header--title">
+
+            
               <!--ADD New product section -->
 
               <h2>Add New Product</h2>

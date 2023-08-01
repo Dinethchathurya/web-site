@@ -1,3 +1,8 @@
+<?php
+$quantity = $_POST['quantity'];
+$price = $_REQUEST['chprice'];
+$pname = $_REQUEST['chpname'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,34 +29,24 @@
                     style="background-color: var(--c-background); border: 1px solid var(--c-secondry2); border-radius: 20px; padding: 20px;">
                     <h1 class="title">Login Form</h1>
 
-                    <!DOCTYPE html>
-                    <html lang="en">
-
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <link rel="icon" href="img/logo/Logo web.png">
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-                            rel="stylesheet"
-                            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-                            crossorigin="anonymous">
-                        <title>Document</title>
-                    </head>
-
                     <body>
-
                         <form action="login.php" method="post">
+                            <?php
+                            echo '<input type="hidden" name="pname" value="' . $pname . '">
+              <input type="hidden" name="price" value="' . $price . '">
+              <input type="hidden" name="quantity" value="' . $quantity . '">';
+                            ?>
+
                             <div class="container registration-container">
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example1">Username OR Email address</label>
-                                    <input type="email" id="form2Example1" style="background-color: #f3bcbc;" name="email" placeholder="invalid username or password" class="form-control" />
+                                    <label class="form-label" for="form2Example1">Email address</label>
+                                    <input type="email" id="form2Example1" name="email" class="form-control" />
                                 </div>
 
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example2">Password</label>
-                                    <input type="password" id="form2Example2" name="pass"style="background-color: #f3bcbc;" placeholder="invalid username or password" class="form-control" />
+                                    <input type="password" id="form2Example2" name="pass" class="form-control" />
                                 </div>
 
 
@@ -66,15 +61,15 @@
 
                                 <div class="col">
 
-                                    <a href="#!">Forgot password?</a>
+                                    <a href="cantactus.html">Forgot password?</a>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" name="submit" class="btn btn-primary btn-block me-2 px-5 py-2 border-0">Sign
-                                    in</button>
+                                <button type="submit" name="submit"
+                                    class="btn btn-primary btn-block me-2 px-5 py-2 border-0">Sign in</button>
                             </div>
                             <div class="text-center">
-                                <p>Not a member? <a href="Register.html">Register</a></p>
+                                <p>Not a member? <a href="register.html">Register</a></p>
                                 <p>or sign up with:</p>
                                 <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-facebook-f"></i>

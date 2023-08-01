@@ -1,4 +1,7 @@
 <?php
+$quantity = $_POST['quantity'];
+$oneprice = $_POST['price'];
+$pname = $_POST['pname'];
 $server="localhost";
 $usename="root";
 $password="root1234";
@@ -18,10 +21,10 @@ $email=$_REQUEST["email"];
 if (!$conn) {
     die("Connection faild: " . mysqli_connect_error());
 }
-$sql="INSERT INTO Client(Fname,Lname,username,password,email,address,number,zip) VALUES('$fname','$lname','$uname','$pass','$email','$addres','$tele','$zip')";
+$sql="INSERT INTO Client(Fname,Lname,username,password,email,address,number,zip) VALUES('$fname','$lname','$uname','$pass','$email','$addres','$tele','$zip');";
 
 if (mysqli_query($conn,$sql)) {
-    echo"recoded";
+   header("Location: menu.php");
 }else echo"error";
 
 mysqli_close($conn);

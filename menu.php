@@ -10,8 +10,6 @@ $conn = mysqli_connect($server, $usename, $password, $dbname);
 if (!$conn) {
   die("connection faild" . mysqli_connect_error());
 }
-
-$query="SELECT * FROM ";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +23,7 @@ $query="SELECT * FROM ";
   
 </head>
 
-<body>
+<body onload="registerfirst()">
   
 
      <!--Navbar section start-->
@@ -42,13 +40,13 @@ $query="SELECT * FROM ";
                   <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="menu.html">Menu</a>
+                  <a class="nav-link" href="menu.php?id=123">Menu</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="AboutUs.html">About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contactus.html">Contact Us</a>
+                  <a class="nav-link" href="contactus.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="login.html">My Account</a>
@@ -65,94 +63,67 @@ $query="SELECT * FROM ";
       
       <!--Navbar section end-->
   
+      <div class="backcolor">
 
+        <div class="container py-4 text-center">
+          <div style="background-color: #fdf3f3;border: none !important;
+          border-radius: 15px !important;
+          box-shadow: 4px 6px 20px #ffe1e1 !important;
+          margin: 10px 70px 10px 70px; padding: 20px ;">
+          <p class="p-text">Register Now Before Placing Order!</p>
+          <a class="btn btn-primary mx-2 px-5 py-2 border-0" href="Register.html">Register Now</a>
+          </div>
+
+
+        </div>
+
+      </div>
 
 <div class="backcolor section-padding pt-5">
 
       <h1 class="title"> Our Menu</h1>
                 <div class="items ">
                   
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/bread.png" height="200px" class="card-img-top" alt="...">
+<?php
+
+$query="SELECT * FROM Product;";
+
+$result=mysqli_query($conn,$query);
+ $numrow = mysqli_num_rows($result);
+
+if($numrow>0){
+  while ($row = mysqli_fetch_assoc($result)) {
+  $productid=(string)$row['idProduct'];
+  $name=(string)$row['name'];
+  $about=(string)$row['about'];
+  $price=(string)$row['price'];
+  $url=(string)$row['url'];
+  
+  echo'<div class="card text-center" style="width: 18rem;">
+                    <img src="'.$url.'" height="200px" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Bread</h5>
-                      <p  class="card-text">200 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
+                      <h5 class="card-title">'.$name.'</h5>
+                      <p  class="card-text">'.$price.' LKR</p>
+
+                      <form method="POST" action="checkout.php"> 
+                      <input type="hidden" name="id" value="' . $productid . '">
+                      <input type="hidden" name="name" value="' . $name . '">
+                      <input type="hidden" name="price" value="' . $price. '">
+                      <input type="hidden" name="about" value="' . $about . '">
+                      <input type="hidden" name="url" value="' . $url . '">
+
+                      <button class="btn btn-primary" name="submit" type="submit" >BUY NOW </button>
+                      </form>
                     </div>
-                  </div>
+                  </div>';
 
-                  <div class="card text-center" style="width: 18rem;" style="height: 1500*120px;">
+ }
 
-                    <img src="img/menu/burger.jpg" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Chicken Burger</h5>
-                      <p class="card-text">550 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
+}
 
-
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/donutbox.png" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Donut Box</h5>
-                      <p class="card-text">1000 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
-
-
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/pie.png" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Fruit Pie</h5>
-                      <p class="card-text">2200 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
-
-
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/pastry.png" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Pastry Platter</h5>
-                      <p class="card-text">900 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
-
-
-
-
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/cheesecake.png" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Cheese Cake</h5>
-                      <p class="card-text">600 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
-
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/cupcake.png" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Red Cupcake</h5>
-                      <p class="card-text">450 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
-
-
-
-                  <div class="card text-center" style="width: 18rem;">
-                    <img src="img/menu/bun.png" height="200px" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Cheesy Meat Bun</h5>
-                      <p class="card-text">650 LKR</p>
-                      <a href="#" class="btn btn-primary">BUY NOW</a>
-                    </div>
-                  </div>
-                </div>
+mysqli_close($conn);
+?>
+ </div>
 
                 
   </div>
@@ -253,7 +224,11 @@ $query="SELECT * FROM ";
   
   <!-- Footer end-->
   
-
+<script>
+  function registerfirst(){
+    alert("If you're not registered, please register and create an account before continuing.");
+  }
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
